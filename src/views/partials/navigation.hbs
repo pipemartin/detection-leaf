@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">Cotton Leaf Detection</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        {{#if user}}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Types Sickness
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/leaf">All Sickness</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/leaf/add">Add A Sickness</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/detection/detection">Detection</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+          </li>
+        {{/if}}
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="/signin"
+            role="button"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Sign
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/signin">In</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/signup">Up</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

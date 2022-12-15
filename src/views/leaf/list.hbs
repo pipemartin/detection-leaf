@@ -1,0 +1,27 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each leaf}}
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase">
+                            {{nombre}}
+                        </h3>
+                        <p class="m-2">{{imagen}}</p>
+                        <p class="m-2">{{descripcion}}</p>
+                        <p>{{timeago created_at}}</p>
+                        <a href="/leaf/delete/{{leafId}}" class="btn btn-danger">Eliminar Enfermedad</a>
+                        <a href="/leaf/edit/{{leafId}}" class="btn btn-secondary">Editar Enfermedad</a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card car-body text-center">
+                    <p> No hay Tipo de enfermedades Creados </p>
+                    <a href="/leaf/add">Crear un Tipo de enfermedad a la hoja</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

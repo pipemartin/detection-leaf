@@ -1,0 +1,43 @@
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="card" style="width: 450px;">
+        <div class="card-body">
+          <form action="/leaf/add" method="post">
+            <div class="form-group">
+              <label for="form" class="form-label">Nombre De La Enfermedad:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="nombre"
+                placeholder="Nombre enfermedad"
+                autofocus
+              />
+            </div>
+            <div class="form-group">
+              <label for="form" class="form-label">imagen:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="imagen"
+                placeholder="Nombre Cientifico"
+              />
+            </div>
+            <div class="form-group">
+              <label for="form" class="form-label">Descripcion:</label>
+              <textarea
+                name="descripcion"
+                rows="3"
+                class="form-control"
+                placeholder="descripcion"
+              ></textarea>
+              <button class="btn btn-success btn-block">
+                save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

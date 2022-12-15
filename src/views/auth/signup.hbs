@@ -1,0 +1,55 @@
+
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="card">
+        <div class="card-head">
+          <div class="text-center">
+            <h3>Sign Up</h3>
+          </div>
+          <div>
+            <div class="card-body">
+              <form action="/signup" method="post" id="demo-form">
+                <div class="form-group p-2">
+                  <label for="Name">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    class="form-control"
+                    autofocus
+                  />
+                </div>
+                <div class="form-group p-2">
+                  <label for="Name">User Name</label>
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="User Name"
+                    class="form-control"
+                    size="32"
+                    minlength="3" 
+                    maxlength="64"
+                  />
+                </div>
+                <div class="form-group p-2">
+                  <label for="Name">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="PassWord"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group text-center">
+                  <button class="g-recaptcha" data-sitekey="6Lf8tjEjAAAAAIxBe3uUrWAg4sPm12J2Dswv8fBH" data-callback="onSubmit">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
