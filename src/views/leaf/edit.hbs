@@ -3,14 +3,21 @@
         <div class="col-md-4 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <form action="/leaf/edit/{{leaf.leafId}}" method="post">
+                    <form action="/leaf/edit/{{leaf.leafId}}" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="form" class="form-label">Nombre De La Enfermedad:</label>
                             <input type="text" value="{{leaf.nombre}}" class="form-control" name="nombre" placeholder="Nombre enfermedad" autofocus>
                         </div>
                         <div class="form-group">
+                            <label for="form" class="form-label">Cargar Imagen:</label>
+                            <input
+                                type="file"
+                                class="form-control"
+                                name="image"
+                            />
+                        <div class="form-group">
                             <label for="form" class="form-label">Nombre Cientifico:</label>
-                            <input type="text" value="{{leaf.imagen}}" class="form-control" name="imagen" placeholder="imagen">
+                            <input type="text" value="{{leaf.nombreCientifico}}" class="form-control" name="nombreCientifico" placeholder="imagen">
                         </div>
                         <div class="form-group">
                             <label for="form" class="form-label">Descripcion:</label>

@@ -7,7 +7,8 @@
                         <h3 class="card-title text-uppercase">
                             {{nombre}}
                         </h3>
-                        <p class="m-2">{{imagen}}</p>
+                        <img src='/uploads/{{imagen}}' width="250" height="250">
+                        <p class="m-2">{{nombreCientifico}}</p>
                         <p class="m-2">{{descripcion}}</p>
                         <p>{{timeago created_at}}</p>
                         <a href="/leaf/delete/{{leafId}}" class="btn btn-danger">Eliminar Enfermedad</a>

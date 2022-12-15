@@ -2,16 +2,24 @@ const express = require('express');
 const pool = require('../database');
 const router = express.Router();
 const {isLoggedIn} = require('../lib/auth')
+const multer = require('multer')
+
+
+// middlewares
+
+
 
 router.get('/add',isLoggedIn, (req,res)=>{
     res.render('leaf/add');
 })
 
 router.post('/add',isLoggedIn, async (req,res)=>{
-    const {nombre, imagen, descripcion} = req.body;
+    const pathimage = req.file.filename;
+    const {nombre, nombreCientifico, descripcion} = req.body;
     const newLeaf = {
         nombre,
-        imagen,
+        imagen: pathimage,
+        nombreCientifico,
         descripcion,
         user_id: req.user.id
     };
@@ -41,10 +49,12 @@ router.get('/edit/:id',isLoggedIn, async(req,res)=>{
 
 router.post('/edit/:id',isLoggedIn, async(req,res)=>{
     const {id} = req.params;
-    const {nombre, imagen, descripcion} = req.body;
+    const pathimage = req.file.filename;
+    const {nombre, nombreCientifico, descripcion} = req.body;
     const newLeaf = {
         nombre,
-        imagen,
+        imagen: pathimage,
+        nombreCientifico,
         descripcion
     };
     await pool.query('UPDATE leafenfermedades set ? WHERE leafId = ?',[newLeaf, id]);
