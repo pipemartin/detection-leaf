@@ -1,6 +1,6 @@
-CREATE DATABASE webia;
+CREATE DATABASE dbleaf;
 
-USE webia;
+USE dbleaf;
 
 CREATE TABLE users(
     id INT(11) NOT NULL,
