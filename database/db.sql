@@ -7,7 +7,8 @@ CREATE TABLE users(
     username VARCHAR(16) NOT NULL,
     password VARCHAR(60) NOT NULL,
     fullname VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL
+    email VARCHAR(100) NOT NULL,
+    
 );
 
 ALTER TABLE users
@@ -23,6 +24,7 @@ CREATE TABLE leafenfermedades(
     leafId INT(11) NOT NULL,
     nombre VARCHAR(150) NOT NULL,
     imagen VARCHAR(200) NOT NULL, 
+    nombreCientifico VARCHAR(100) NOT NULL,
     descripcion TEXT NOT NULL,
     user_id INT(11),
     created_at timestamp NOT NULL DEFAULT current_timestamp,
