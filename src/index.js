@@ -51,6 +51,7 @@ app.use(multer({
     dest: path.join(__dirname, 'public/uploads')
 }).single('image'));
 
+
 // global Variables
 app.use((req,res,next)=>{
     app.locals.success = req.flash('success');

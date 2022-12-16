@@ -36,8 +36,7 @@ passport.use(
       const newUser = {
         username,
         password,
-        email,
-        rolesId: 2
+        email
       };
       newUser.password = await helpers.encryptPassword(password);
       const result = await pool.query("INSERT INTO users SET ?", [newUser]);
