@@ -67,6 +67,7 @@ app.use(require('./routes/authentication'));
 app.use('/leaf', require('./routes/leaf'));
 app.use('/detection', require('./routes/detection'));
 
+
 // Public
 app.use(express.static(path.join(__dirname, 'public')))
 

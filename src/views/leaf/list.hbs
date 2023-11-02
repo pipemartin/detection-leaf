@@ -1,3 +1,4 @@
+
 <div class="container p-4">
     <div class="row">
         {{#each leaf}}
@@ -7,13 +8,16 @@
                         <h3 class="card-title text-uppercase">
                             {{nombre}}
                         </h3>
-                        <img src='/uploads/{{imagen}}' width="250" height="250">
+                        <img src='/uploads/{{imagen}}' id="image{{@index}}" width="250" height="250">
                         <p class="m-2">{{nombreCientifico}}</p>
                         <p class="m-2">{{descripcion}}</p>
                         <p>{{timeago created_at}}</p>
-                        <a href="/leaf/delete/{{leafId}}" class="btn btn-danger">Eliminar Enfermedad</a>
-                        <a href="/leaf/edit/{{leafId}}" class="btn btn-secondary">Editar Enfermedad</a>
+                        <a href="/leaf/delete/{{leafId}}" class="btn btn-danger">Eliminar</a>
+                        <a href="/leaf/edit/{{leafId}}" class="btn btn-secondary">Editar</a>
+                        <!-- <a class="btn btn-secondary" class="predecirButton" id="predecirButton">Predecir</a> -->
+                        <button class="base64Button" id="base64Button{{@index}}" >Base 64</button>
                     </div>
+                    <div id="responseBox{{@index}}"></div>
                 </div>
             </div>
         {{else}}
@@ -26,3 +30,53 @@
         {{/each}}
     </div>
 </div>
+<script>
+    var base64Button = document.querySelectorAll('.base64Button')
+    
+    base64Button.forEach((Element, index)=>{
+        Element.addEventListener('click', function() {
+            let idImg= document.getElementById(`image${Element.id[Element.id.length-1]}`)
+            let responseBox = document.getElementById(`responseBox${Element.id[Element.id.length-1]}`);
+            let srcImg = idImg.getAttribute('src')
+            fetch(srcImg).then(response => response.blob()) // Obtiene el contenido de la imagen como Blob
+            .then(blob => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        if (reader.error) {
+                            reject(reader.error);
+                        } else {
+                            resolve(reader.result);
+                        }
+                    };
+                    reader.readAsDataURL(blob); // Convierte el Blob a BASE64
+                });
+            })
+            .then(base64String => {
+                //console.log('Imagen en BASE64:', base64String);
+                fetch('http://localhost:5000/base64', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'text/plain'
+                    },
+                    body: JSON.stringify({ 'base': base64String })
+                }).then(function(response) {
+                    if (response.ok) {
+                        console.log('Imagen enviada con éxito.');
+                        response.json().then(function(data) {
+                            let jsonObject = JSON.parse(JSON.stringify(data));
+                            let valordata = jsonObject.data;
+                            responseBox.innerHTML = `<p>Respuesta de la API: ${valordata}</p>`;
+                        })
+                    } else {
+                        console.error('Error al enviar la imagen a la API.');
+                    }
+                })
+                // Aquí puedes trabajar con la imagen en formato BASE64
+            }).catch(error => {
+                console.error('Error al cargar la imagen:', error);
+            });
+        })
+    })
+</script>

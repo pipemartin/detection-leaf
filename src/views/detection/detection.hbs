@@ -1,8 +1,8 @@
 <main>
     <div class="px-4 py-2 my-2 text-center border-bottom">
-    <h1 class="display-5 fw-bold">Cotton Leaf Detection</h1>
+    <h1 class="display-5 fw-bold">DataSet Herbarium</h1>
     <div class="col-lg-6 mx-auto">
-        <p class="lead mb-0">Clasificacion de imagenes (De hojas de algodon) usando la camara web utilizando Tensorflow.js</p>
+        <p class="lead mb-0">Clasificacion de imagenes (DataSet Herbarium) usando la camara web y Tensorflow.js</p>
     </div>
     </div>
     <div class="b-example-divider"></div>
@@ -11,8 +11,8 @@
         <div class="col-12 col-md-4 offset-md-4 text-center">
         <video id="video" playsinline autoplay style="width: 1px;"></video>
         <button class="btn btn-primary mb-2" id="cambiar-camara" onclick="cambiarCamara();">Cambiar camara</button>
-        <canvas id="canvas" width="400" height="400" style="max-width: 100%;"></canvas>
-        <canvas id="othercanvas" width="150" height="150" style="display: none"></canvas>
+        <canvas id="canvas" width="224" height="224" style="max-width: 100%;"></canvas>
+        <canvas id="othercanvas" width="224" height="224" style="display: none"></canvas>
         <div id="resultado"></div>            
         </div>
     </div>
@@ -30,7 +30,7 @@
     var video = document.getElementById("video");
     var ctx = canvas.getContext("2d");
     var modelo = null;
-    var size = 400;
+    var size = 224;
     var camaras = [];
 
     var currentStream = null;
@@ -103,11 +103,11 @@
     function predecir() {
         if (modelo != null) {
             //Pasar canvas a version 150x150
-            resample_single(canvas, 150, 150, othercanvas);
+            resample_single(canvas, 224, 224, othercanvas);
 
             var ctx2 = othercanvas.getContext("2d");
 
-            var imgData = ctx2.getImageData(0,0,150,150);
+            var imgData = ctx2.getImageData(0,0,224,224);
             var arr = []; //El arreglo completo
             var arr150 = []; //Al llegar a arr150 posiciones se pone en 'arr' como un nuevo indice
             for (var p=0, i=0; p < imgData.data.length; p+=4) {
@@ -115,7 +115,7 @@
                 var green = imgData.data[p+1]/255;
                 var blue = imgData.data[p+2]/255;
                 arr150.push([red, green, blue]); //Agregar al arr150 y normalizar a 0-1. Aparte queda dentro de un arreglo en el indice 0... again
-                if (arr150.length == 150) {
+                if (arr150.length == 224) {
                     arr.push(arr150);
                     arr150 = [];
                 }
@@ -127,8 +127,8 @@
             var resultados = modelo.predict(tensor4).dataSync();
             var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
 
-            var clases = ["diseased leaf","diseased plant","freash leaf","freash plant"];
-            console.log("Prediccion", clases[mayorIndice]);
+            var clases = ["Aspleniaceae","Menispermacease","Xyridaceae"];
+            //console.log("Prediccion", clases[mayorIndice]);
             document.getElementById("resultado").innerHTML = clases[mayorIndice];
         }
 
